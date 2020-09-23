@@ -18,7 +18,7 @@ FiveNoI18N.init([
   {
     language: 'en2',
     db: enTwo,
-  }
+  },
 ])
 
 describe('i18n', () => {
@@ -34,5 +34,10 @@ describe('i18n', () => {
   it('variable', () => {
     FiveNoI18N.setLanguage('en2')
     chai.expect('translate2 Test').equal(FiveNoI18N.translate('test %name%', { '%name%': 'Test' }))
+  })
+
+  it('en3', () => {
+    FiveNoI18N.setLanguage('en3')
+    chai.expect('test Test').equal(FiveNoI18N.translate('test %name%', { '%name%': 'Test' }))
   })
 })

@@ -25,7 +25,11 @@ export const setLanguage = (language: string) => {
 }
 
 export const translate = (value: string, variables?: FiveNoI18N.TranslateVariables): string => {
-  let str = translateDatabases[translateLanguage][value] ?? value
+  let str = value
+
+  if (translateDatabases[translateLanguage] && translateDatabases[translateLanguage][value]) {
+    str = translateDatabases[translateLanguage][value]
+  }
 
   if (variables) {
     for (const variableKey of Object.keys(variables)) {
