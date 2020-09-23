@@ -16,6 +16,8 @@ export const init = (options: Array<FiveNoI18N.InitParam>) => {
   }
 }
 
+export const getTranslateDatabases = (): FiveNoI18N.TranslateDatabases => translateDatabases
+
 export const initDefault = () => {
   translateLanguage = translateLanguageDefault
 }
@@ -34,7 +36,7 @@ export const translate = (value: string, variables?: FiveNoI18N.TranslateVariabl
   if (variables) {
     for (const variableKey of Object.keys(variables)) {
       const value = variables[variableKey]
-      if (typeof value !== 'undefined') {
+      if (['number', 'string'].includes(typeof value)) {
         str = str.replace(variableKey, value.toString())
       }
     }
