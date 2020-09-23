@@ -29,7 +29,10 @@ export const translate = (value: string, variables?: FiveNoI18N.TranslateVariabl
 
   if (variables) {
     for (const variableKey of Object.keys(variables)) {
-      str = str.replace(variableKey, variables[variableKey].toString())
+      const value = variables[variableKey]
+      if (typeof value !== 'undefined') {
+        str = str.replace(variableKey, value.toString())
+      }
     }
   }
 
