@@ -12,4 +12,8 @@ export const initDefault = i18n.initDefault
 
 export const getTranslateDatabases = i18n.getTranslateDatabases
 
+export const currentLanguage = i18n.currentLanguage
+
+export const defaultLanguage = i18n.defaultLanguage
+
 export default i18n
