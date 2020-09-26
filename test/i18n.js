@@ -37,7 +37,13 @@ describe('i18n', () => {
   })
 
   it('en3', () => {
-    FiveNoI18N.setLanguage('en3')
-    chai.expect('test Test').equal(FiveNoI18N.translate('test %name%', { '%name%': 'Test' }))
+    let error = ''
+    try {
+      FiveNoI18N.setLanguage('en3')
+    } catch (e) {
+      error = e.message
+    }
+
+    chai.expect('Language is not exists').equal(error)
   })
 })

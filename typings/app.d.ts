@@ -7,7 +7,7 @@ export namespace FiveNoI18N {
   interface TranslateDatabases {
     [language: string]: TranslateDatabase;
   }
-  
+
   interface TranslateVariables {
     [variable: string]: string | number;
   }

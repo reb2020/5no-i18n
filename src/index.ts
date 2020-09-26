@@ -2,16 +2,16 @@ import { FiveNoI18N } from '../typings/app'
 
 const translateDatabases = {} as FiveNoI18N.TranslateDatabases
 
-let translateLanguage = 'en'
+export let currentLanguage = 'en'
 
-let translateLanguageDefault = 'en'
+export let defaultLanguage = 'en'
 
 export const init = (options: Array<FiveNoI18N.InitParam>) => {
   for (const option of options) {
     translateDatabases[option.language] = option.db
     if (option?.default) {
-      translateLanguageDefault = option.language
-      translateLanguage = option.language
+      defaultLanguage = option.language
+      currentLanguage = option.language
     }
   }
 }
@@ -19,18 +19,22 @@ export const init = (options: Array<FiveNoI18N.InitParam>) => {
 export const getTranslateDatabases = (): FiveNoI18N.TranslateDatabases => translateDatabases
 
 export const initDefault = () => {
-  translateLanguage = translateLanguageDefault
+  currentLanguage = defaultLanguage
 }
 
 export const setLanguage = (language: string) => {
-  translateLanguage = language
+  if (!translateDatabases[language]) {
+    throw new Error('Language is not exists')
+  }
+
+  currentLanguage = language
 }
 
 export const translate = (value: string, variables?: FiveNoI18N.TranslateVariables): string => {
   let str = value
 
-  if (translateDatabases[translateLanguage] && translateDatabases[translateLanguage][value]) {
-    str = translateDatabases[translateLanguage][value]
+  if (translateDatabases[currentLanguage] && translateDatabases[currentLanguage][value]) {
+    str = translateDatabases[currentLanguage][value]
   }
 
   if (variables) {
